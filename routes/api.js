@@ -7,7 +7,7 @@ let fs = require('fs')
 let fetch = require('node-fetch');
 let router  = express.Router();
 let nhentai = require('nhentai-js');
-let { tiktok, fbdl, npmstalk, pinterest, doujindesu, pinterestdl, gpt} = require('../lib/index') 
+let { tiktok, styletext, fbdl, npmstalk, pinterest, doujindesu, pinterestdl, gpt} = require('../lib/index') 
 let { BingApi, apikeybing } = require('../lib/scraper/bing-image');
 let options = require(__path + '/lib/options.js');
 let { color, bgcolor } = require(__path + '/lib/color.js');
@@ -69,6 +69,21 @@ loghandler = {
 	     let query = req.query.query
 	     if (!query) return res.json(loghandler.notquery)
 	     let result = await gpt(query)
+	     try {
+	     res.json({
+			  status: true,
+			  creator: `${creator}`,
+              data: result,
+          })
+	    } catch(err) {
+		      console.log(err)
+		      res.json(loghandler.error)
+	       }
+      })
+      router.get('/styletext', async(req, res) => {
+	     let query = req.query.query
+	     if (!query) return res.json(loghandler.notquery)
+	     let result = await styletext(query)
 	     try {
 	     res.json({
 			  status: true,
