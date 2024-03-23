@@ -63,7 +63,7 @@ loghandler = {
 		      console.log(err)
 		      res.json(loghandler.error)
 	       }
-   */   })
+     })*/
      router.get('/xynz-gpt', async(req, res) => {
 	     let query = req.query.query
 	     if (!query) return res.json(loghandler.notquery)
