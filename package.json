@@ -24,6 +24,7 @@
   "dependencies": {
     "@xct007/frieren-scraper": "*",
     "axios": "^0.21.1",
+    "ws": "*",
     "caliph-api": "^1.0.0",
     "chalk": "^4.1.0",
     "cheerio": "^1.0.0-rc.10",
