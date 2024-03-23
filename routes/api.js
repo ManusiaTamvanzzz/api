@@ -58,7 +58,7 @@ loghandler = {
 	     res.json({
 			  status: true,
 			  creator: `${creator}`,
-              result: result,
+              data: result,
           })
 	    } catch(err) {
 		      console.log(err)
@@ -105,6 +105,16 @@ loghandler = {
 		      status: true,
 			  creator: `${creator}`,
               data: result,
+           })
+      })
+      router.get('/pinimg', async(req, res) => {
+	      let query = req.query.query
+	      if (!query) return res.json(loghandler.notquery)
+	      let result = await pinterest(query)
+	      res.json({ 
+		      status: true,
+			  creator: `${creator}`,
+              data: result[Math.floor(Math.random() * result.length)],
            })
       })
       router.get('/google', async (req, res, next) => {
