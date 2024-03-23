@@ -7,7 +7,7 @@ let fs = require('fs')
 let fetch = require('node-fetch');
 let router  = express.Router();
 let nhentai = require('nhentai-js');
-let { tiktok, igstalk,  pinterest, doujindesu, pinterestdl, gpt} = require('../lib/index') 
+let { tiktok, fbdl,  pinterest, doujindesu, pinterestdl, gpt} = require('../lib/index') 
 //let { igstalk } = require('../lib/scraper/igstalk');
 let options = require(__path + '/lib/options.js');
 let { color, bgcolor } = require(__path + '/lib/color.js');
@@ -50,10 +50,10 @@ loghandler = {
 		    res.json(loghandler.error)
 	     }
     })
-    router.get('/igstalk', async(req, res) => {
-	     let query = req.query.query 
-	     if (!query) return res.json(loghandler.notquery)
-	     let result = await igstalk(query)
+    router.get('/fbdl', async(req, res) => {
+	     let url = req.query.url
+	     if (!url) return res.json(loghandler.noturl)
+	     let result = await fbdl(url)
 	     try {
 	     res.json({
 			  status: true,
