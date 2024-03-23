@@ -3,8 +3,12 @@ __path = process.cwd()
 let express = require('express');
 let router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/dashboard', (req, res) => {
     res.sendFile(__path + '/views/index.html')
+})
+
+router.get('/', (req, res) => {
+    res.sendFile(__path + '/views/utama.html')
 })
 
 router.get('/about', (req, res) => {
