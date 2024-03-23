@@ -1,13 +1,13 @@
 __path = process.cwd()
 let express = require('express');
 
-let creator = "Zeltoria"
+let creator = "Vanzzz"
 let axios = require('axios')
 let fs = require('fs')
 let fetch = require('node-fetch');
 let router  = express.Router();
 let nhentai = require('nhentai-js');
-let { tiktok, pinterest, mediafireDl, doujindesu, pinterestdl } = require('../lib/index') 
+let { tiktok, pinterest, mediafireDl, doujindesu, pinterestdl, gpt } = require('../lib/index') 
 let options = require(__path + '/lib/options.js');
 let { color, bgcolor } = require(__path + '/lib/color.js');
 let { getBuffer, fetchJson } = require(__path + '/lib/fetcher.js');
@@ -53,6 +53,21 @@ loghandler = {
 	     let url = req.query.url
 	     if (!url) return res.json(loghandler.noturl)
 	     let result = await mediafireDl(url)
+	     try {
+	     res.json({
+			  status: true,
+			  creator: `${creator}`,
+              data: result,
+          })
+	    } catch(err) {
+		      console.log(err)
+		      res.json(loghandler.error)
+	       }
+      })
+     router.get('/xynz-gpt', async(req, res) => {
+	     let url = req.query.url
+	     if (!url) return res.json(loghandler.noturl)
+	     let result = await gpt(url)
 	     try {
 	     res.json({
 			  status: true,
