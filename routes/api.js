@@ -7,7 +7,7 @@ let fs = require('fs')
 let fetch = require('node-fetch');
 let router  = express.Router();
 let nhentai = require('nhentai-js');
-let { tiktok, pinterest, mediafireDl, doujindesu, pinterestdl, gpt } = require('../lib/index') 
+let { tiktok, pinterest, doujindesu, pinterestdl, gpt } = require('../lib/index') 
 let options = require(__path + '/lib/options.js');
 let { color, bgcolor } = require(__path + '/lib/color.js');
 let { getBuffer, fetchJson } = require(__path + '/lib/fetcher.js');
@@ -49,7 +49,7 @@ loghandler = {
 		    res.json(loghandler.error)
 	     }
     })
-     router.get('/mediafire', async(req, res) => {
+   /*  router.get('/mediafire', async(req, res) => {
 	     let url = req.query.url
 	     if (!url) return res.json(loghandler.noturl)
 	     let result = await mediafireDl(url)
@@ -63,7 +63,7 @@ loghandler = {
 		      console.log(err)
 		      res.json(loghandler.error)
 	       }
-      })
+   */   })
      router.get('/xynz-gpt', async(req, res) => {
 	     let query = req.query.query
 	     if (!query) return res.json(loghandler.notquery)
