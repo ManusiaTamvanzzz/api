@@ -1,264 +1,763 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="FREE REST API">
-    <meta name="robots" content="archive, follow, imageindex, index, odp, snippet, translate">
-    <meta name="author" content="Velgrynd">
-    <title>Velgrynd - API</title>
-    <meta property="og:site_name" name="og:site_name" content="Velgrynd APIs">
-    <meta property="og:title" name="og:title" content="Velgrynd - REST APIs">
-    <meta property="og:url" name="og:url" content="https://api-velgrynd.herokuapp.com/">
-    <meta property="og:image" name="og:image" content="../images/logo.png">
-    <meta property="og:description" name="og:description" content="Free Rest Api For You">
-    <link rel="stylesheet" href="../assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../assets/vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="shortcut icon" href="../assets/images/logo.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
-    <iframe src="../audio/audio.mp3" hidden="hidden" allow="autoplay"; encrypt-media></iframe>
-    </head>
-  
-  <body>
-  <body id="page-top" onload="getvisitor();">
-    <div class="container-scroller">
-      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        </div>
-        <div class="navbar-menu-wrapper d-flex align-items-stretch">
-          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span class="mdi mdi-menu"></span>
-          </button>
-          <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item nav-profile dropdown">
-              <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                <div class="nav-profile-img">
-                  <img src="../images/logo.png" alt="image">
-                  <span class="availability-status online"></span>
-                </div>
-                <div class="nav-profile-text">
-                  <p class="mb-1 text-black">Velgrynd</p>
-                </div>
-              </a>
-              <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item" href="/about">
-                  <i class="mdi mdi-creation menu-icon"></i> About </a>
-              </div>
-            </li>
-            <li class="nav-item d-none d-lg-block full-screen-link">
-              <a class="nav-link">
-                <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
-              </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                <i class="mdi mdi-bell-outline"></i>
-                <span class="count-symbol bg-danger"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                <h6 class="p-3 mb-0">Notifications</h6>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-success">
-                      <i class="mdi mdi-calendar"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                    <h6 class="preview-subject font-weight-normal mb-1">Welcome To Velgrynd API</h6>
-                   </div>
-                </a>
-            </li>
-          </ul>
-          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-            <span class="mdi mdi-menu"></span>
-          </button>
-        </div>
-      </nav>
-      <div class="container-fluid page-body-wrapper">
-        <nav class="sidebar sidebar-offcanvas" id="sidebar">
-          <ul class="nav">
-            <li class="nav-item nav-profile">
-              <a class="nav-link">
-                <div class="nav-profile-image">
-                  <img src="../images/logo.png" alt="profile">
-                  <span class="login-status online"></span>
-                </div>
-                <div class="nav-profile-text d-flex flex-column">
-                  <span class="font-weight-bold mb-2">Velgrynd</span>
-                </div>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <span class="menu-title">Dashboard</span>
-                <i class="mdi mdi-home menu-icon"></i>
-              </a>
-            </li>
-           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-sosmed" aria-expanded="false" aria-controls="ui-sosmed">
-              <span class="menu-title">Social Media API</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-laptop menu-icon"></i>
-            </a>
-            <div class="collapse" id="ui-sosmed">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" target="_blank" href="/api/tiktok?url=https://vt.tiktok.com/ZSe8Xfwd1">Tiktok Download</a></li>
-                <li class="nav-item"> <a class="nav-link" target="_blank" href="/api/igdl?url=https://www.instagram.com/p/CTMnneTl8YJ/?utm_medium=copy_link">Instagram Download</a></li>
-                <li class="nav-item"> <a class="nav-link" target="_blank" href="/api/youtube?url=https://youtu.be/5C8yvJUVB-0">Youtube Download</a></li>
-                <li class="nav-item"> <a class="nav-link" target="_blank" href="/api/twitter?url=https://twitter.com/PassengersMovie/status/821025484150423557">Twitter Download</a></li>
-                <li class="nav-item"> <a class="nav-link" target="_blank" href="/api/pindl?url=https://id.pinterest.com/pin/361906520063070744">Pinterest Download</a></li>
-                <li class="nav-item"> <a class="nav-link" target="_blank" href="/api/mediafire?url=https://www.mediafire.com/file/pwxob70rpgma9lz/GBWhatsApp_v8.75%2528Tutorial_Yud%2529.apk/file">MediaFire Download</a></li>
-              </ul>
-            </div>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-animanga" aria-expanded="false" aria-controls="ui-animanga">
-              <span class="menu-title">Anime & Manga API</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-cat menu-icon"></i>
-            </a>
-            <div class="collapse" id="ui-animanga">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" target="_blank" href="/api/nhentai?code=298547">Nhentai</a></li>
-                <li class="nav-item"> <a class="nav-link" target="_blank" href="/api/nHentaiSearch?query=gotoubun">Nhentai Search</a></li>
-                <li class="nav-item"> <a class="nav-link" target="_blank" href="/api/doujindesuSearch?query=gotoubun">Doujindesu Search</a></li>
-              </ul>
-            </div>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-search" aria-expanded="false" aria-controls="ui-search">
-              <span class="menu-title">Searching API</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-book-search menu-icon"></i>
-            </a>
-            <div class="collapse" id="ui-search">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" target="_blank" href="/api/google?query=kapan+indonesia+merdeka">Google Search</a></li>
-                <li class="nav-item"> <a class="nav-link" target="_blank" href="/api/pinterest?query=itsuki+nakano">Pinterest Search</a></li>
-              </ul>
-            </div>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-image" aria-expanded="false" aria-controls="ui-image">
-              <span class="menu-title">Random Image API</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-image menu-icon"></i>
-            </a>
-            <div class="collapse" id="ui-image">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" target="_blank" href="/api/randomimage/waifu">Ramdom Waifu</a></li>
-                <li class="nav-item"> <a class="nav-link" target="_blank" href="/api/randomimage/neko">Random Neko</a></li>
-                <li class="nav-item"> <a class="nav-link" target="_blank" href="/api/randomimage/husbu">Random Husbu</a></li>
-                <li class="nav-item"> <a class="nav-link" target="_blank" href="/api/randomimage/loli">Random Loli</a></li>
-                <li class="nav-item"> <a class="nav-link" target="_blank" href="/api/randomimage/milf">Random Milf</a></li>
-                <li class="nav-item"> <a class="nav-link" target="_blank" href="/api/randomimage/cosplay">Random Cosplay</a></li>
-              </ul>
-            </div>
-          </li>
-          
-          <li class="nav-item sidebar-actions">
-              <span class="nav-link">
-                <div class="border-bottom">
-                  <h6 class="font-weight-normal mb-3">Made With ❤️ Velgrynd</h6>
-                </div>
-                <div class="mt-4">
-                <span class="menu-icon">
-                     <i class="mdi mdi-whatsapp"></i>
-                   </span>
-                 <a class="menu-title" href="https://wa.me/6288286421519">WhatsApp</a>
-                </div>
-                <div class="mt-4">
-                <span class="menu-icon">
-                     <i class="mdi mdi-instagram"></i>
-                   </span>
-                 <a class="menu-title" href="https://instagram.com/ultimareall">Instagram</a>
-                </div>
-                <div class="mt-4">
-                <span class="menu-icon">
-                     <i class="mdi mdi-github-circle"></i>
-                   </span>
-                 <a class="menu-title" href="https://github.com/ultimareall">GitHub</a>
-                </div>
-              </span>
-            </li>
-          </ul>
-        </nav>
-        <div class="main-panel">
-          <div class="content-wrapper">
-            <div class="page-header">
-              <h3 class="page-title">
-                <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                  <i class="mdi mdi-home"></i>
-                </span> Dashboard
-              </h3>
-              <nav aria-label="breadcrumb">
-                <ul class="breadcrumb">
-                  <li class="breadcrumb-item active" aria-current="page">
-                  </li>
-                </ul>
-              </nav>
-            </div>
-            <div class="row">
-              <div class="col-md-4 stretch-card grid-margin">
-                <div class="card ngentod-merah card-img-holder text-white">
-                  <div class="card-body">
-                    <h4 class="font-weight-normal mb-3">IP Address <i class="mdi mdi-access-point-network mdi-24px float-right"></i>
-                    </h4>
-                    <h2 class="mb-5" id="ip">Waiting...</h2>
-                    <h6 class="card-text">Your IP Address</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 stretch-card grid-margin">
-                <div class="card ngentod-biru card-img-holder text-white">
-                  <div class="card-body">
-                    <h4 class="font-weight-normal mb-3">Visitor <i class="mdi mdi-eye mdi-24px float-right"></i>
-                    </h4>
-                    <h2 class="mb-5" id="visitor">Waiting...</h2>
-                    <h6 class="card-text">Visitor This Web</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 stretch-card grid-margin">
-                <div class="card ngentod-ungu card-img-holder text-white">
-                  <div class="card-body">
-                    <h4 class="font-weight-normal mb-3">Date <i class="mdi mdi-calendar mdi-24px float-right"></i>
-                    </h4>
-                    <h2 class="mb-5" id="datetime">Waiting...</h2>
-                    <h6 class="card-text">Date Now</h6>
-                  </div>
-                </div>
-              </div>
-          <footer class="footer">
-            <div class="container-fluid clearfix">
-              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Velgrynd 2021</span>
-            </div>
-          </footer>
-        </div>
-      </div>
+<html>
+<head>
+    <title>Endpoint - VanzDev API</title>
+    <meta property="og:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvCP1T1tG_nglaaF5dYJOFQRM96Xw30te10g&usqp=CAU" />
+    <meta property="og:description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta property="og:title" content="VanzDev API" />
+    <meta property="og:url" content="https://api-vanzdev.vercel.app" />
+    <link href="https://telegra.ph/file/b849a052a00dbbfcd53fd.jpg" rel="icon">
+    <link href="https://telegra.ph/file/b849a052a00dbbfcd53fd.jpg" rel="apple-touch-icon">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3623406530584630"
+     crossorigin="anonymous"></script>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+  <style>
+    html {
+        height: 100%;
+    }
+
+    body {
+        height: 100%;
+        margin: 0px;
+    }
+
+    .center .description .clock {
+        color: #000000;
+        font-size: 20px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .center {
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+        margin: 0px;
+        width: 100%;
+        color: #222;
+        z-index: 1;
+        padding-top: 150px;
+    }
+
+    .center h1 {
+        font-size: 4rem;
+    }
+
+    .center .description {
+        font-family: monospace;
+        line-height: 22px;
+        font-size: 18px;
+        width: 370px;
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 25px;
+    }
+
+    .center .description a {
+        text-decoration: none;
+        color: #111;
+        text-style: bold;
+    }
+
+    .select {
+        display: inline-block;
+        margin-right: 10px;
+        position: relative;
+    }
+
+    select {
+        transition: background-color 200ms ease;
+        font-size: 14px;
+        padding: 10px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        box-sizing: border-box;
+        border-radius: 3px;
+        font-family: monospace;
+        padding-right: 30px;
+        position: relative;
+        outline: 0px;
+        background: #fff;
+        cursor: pointer;
+    }
+
+    .select:after {
+        content: "▼";
+        padding: 14px 8px;
+        position: absolute;
+        right: 13px;
+        top: 0;
+        z-index: 1;
+        text-align: center;
+        width: 10%;
+        height: 100%;
+        pointer-events: none;
+        box-sizing: border-box;
+        font-size: 9px;
+    }
+
+    button {
+        transition: background-color 200ms ease;
+        font-size: 14px;
+        padding: 10px 12px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        box-sizing: border-box;
+        border-radius: 3px;
+        border: 1px solid #aaa;
+        background: #fff;
+        font-family: monospace;
+        cursor: pointer;
+        outline: 0px;
+    }
+
+    button:hover,
+    select:hover {
+        background-color: #eee;
+    }
+
+    .center .links {
+        padding-top: 10px;
+        font-family: monospace;
+        letter-spacing: 0.3px;
+        font-size: 14px;
+    }
+
+    .center .links a {
+        text-decoration: none;
+        margin-left: 0px;
+        margin-right: 100px;
+        color: #111;
+    }
+
+    .center .links a:hover {
+        text-decoration: underline;
+    }
+
+    .center .grid {
+      display: grid;
+      column-gap: 50px;
+    }
+    .center .grid hr {
+      border-top: 1px dashed gray;
+    }
+    .center .grid-item {
+      font-family: monospace;
+      letter-spacing: 0.3px;
+      font-size: 14px;
+      padding-bottom: 20px;
+    }
+    .center .grid-item a {
+      float: left;
+      text-decoration: none;
+      margin-left: 10px;
+      margin-right: 10px;
+      color: #111;
+    }
+
+    footer{
+        color: #000;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
+    iframe {
+        margin-left: 14px;
+        margin-bottom: -5px;
+    }
+
+    @media (max-width: 900px) {
+        .center h1 {
+            font-size: 50px;
+        }
+        .center .links a,
+        .center .links iframe {
+            display: block;
+            margin: auto;
+            margin-bottom: 12px;
+        }
+        .divider {
+            display: none;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .center h1 {
+            font-size: 26px;
+        }
+        .center .description {
+            font-size: 14px;
+            width: 100%;
+            padding-left: 40px;
+            padding-right: 40px;
+            box-sizing: border-box;
+        }
+      }
+      table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    a {
+      color: blue;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+          .user-chat:empty {
+           background-color: transparent;
+           pointer-events: none;
+        }
+           .chat-container {
+            background-color: var(--primary);
+            color: #000;
+            padding: 10px;
+            border-radius: 5px;
+            height: 300px;
+            overflow-y: scroll;
+        }
+
+        .user-chat {
+            background-color: #dcf8c6;
+            color: #000;
+            padding: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+            .bot-chat {
+            background-color: #ffffff;
+            color: #000;
+            padding: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+    .live-chat-input {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      padding: 10px;
+    }
+
+    #inputText {
+      flex: 1;
+      border: none;
+      outline: none;
+      margin-right: 10px;
+      font-size: 16px;
+    }
+
+    #submitBtn {
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      outline: none;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #submitBtn:hover {
+      background-color: #45a049;
+    }
+    }
+  </style>
+</head>
+<body>
+<div class="center">
+    <h1>VanzDev API</h1>
+    <div class="description">
+        Ver. 0.1 Beta
+        <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+        <h3>Hanya Segini Ok</h3>
+        <table>
+            <hr>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Method</th>
+                <th>Tab New</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Xynz Gpt</td>
+                <td>Get</td>
+                <td><a href="https://api-vanzdev.vercel.app/api/xynz-gpt?query=hai, siapa kamu dan kamu di buat oleh siapa?">[ ➠ ]</a></td>
+            </tr>
+            </tr>
+        </table>
+        <h3>Downloader</h3>
+        <table>
+            <hr>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Tab New</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Douyin Downloader</td>
+                <td><a href="/douyindl">[ ➠ ]</a></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Tiktok Downloader</td>
+                <td><a href="/tiktokdl">[ ➠ ]</a></td>
+            </tr>
+        </table>
+        <h3>Scraper</h3>
+        <table>
+            <hr>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Tab New</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Remini</td>
+                <td><a href="/docs">[ ➠ ]</a></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Remove Background</td>
+                <td><a href="/docs">[ ➠ ]</a></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Photo To Anime</td>
+                <td><a href="/docs">[ ➠ ]</a></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Photo To Zombie</td>
+                <td><a href="/docs">[ ➠ ]</a></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Speech To Text</td>
+                <td><a href="/docs">[ ➠ ]</a></td>
+            </tr>
+        </table>
+        <br>
+        <hr>
+        <footer>
+            <p class="footer__copy">&#169; 2024 Vanz. All right reserved.</p>
+        </footer>
+        </br>
+        </hr>
     </div>
-    
-    <script src="../assets/vendors/js/vendor.bundle.base.js"></script>
-    <script src="../assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="../assets/js/off-canvas.js"></script>
-    <script src="../assets/js/hoverable-collapse.js"></script>
-    <script src="../assets/js/misc.js"></script>
-    <script src="../assets/js/dashboard.js"></script>
-    <script src="../assets/js/todolist.js"></script>
-    <script src="../assets/js/ipanda.js"></script>
-    <script src="../assets/js/waktu.js"></script>
-    <script src="../assets/js/visitor.js"></script>
-  </body> 
+  <script>
+    function showTime() {
+      const date = new Date();
+      const h = date.getHours(); 
+      const m = date.getMinutes(); 
+      const s = date.getSeconds(); 
+      const time = h + ":" + m + ":" + s;
+      document.getElementById("MyClockDisplay").innerText = time;
+      setTimeout(showTime, 1000);
+  }
 
+  showTime();
+</script>
+</body>
+  </html><!DOCTYPE html>
+<html>
+<head>
+    <title>Endpoint - VanzDev API</title>
+    <meta property="og:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvCP1T1tG_nglaaF5dYJOFQRM96Xw30te10g&usqp=CAU" />
+    <meta property="og:description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta property="og:title" content="VanzDev API" />
+    <meta property="og:url" content="https://api-vanzdev.vercel.app" />
+    <link href="https://telegra.ph/file/b849a052a00dbbfcd53fd.jpg" rel="icon">
+    <link href="https://telegra.ph/file/b849a052a00dbbfcd53fd.jpg" rel="apple-touch-icon">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3623406530584630"
+     crossorigin="anonymous"></script>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+  <style>
+    html {
+        height: 100%;
+    }
 
- 
+    body {
+        height: 100%;
+        margin: 0px;
+    }
 
- 
-</html>
+    .center .description .clock {
+        color: #000000;
+        font-size: 20px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .center {
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+        margin: 0px;
+        width: 100%;
+        color: #222;
+        z-index: 1;
+        padding-top: 150px;
+    }
+
+    .center h1 {
+        font-size: 4rem;
+    }
+
+    .center .description {
+        font-family: monospace;
+        line-height: 22px;
+        font-size: 18px;
+        width: 370px;
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 25px;
+    }
+
+    .center .description a {
+        text-decoration: none;
+        color: #111;
+        text-style: bold;
+    }
+
+    .select {
+        display: inline-block;
+        margin-right: 10px;
+        position: relative;
+    }
+
+    select {
+        transition: background-color 200ms ease;
+        font-size: 14px;
+        padding: 10px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        box-sizing: border-box;
+        border-radius: 3px;
+        font-family: monospace;
+        padding-right: 30px;
+        position: relative;
+        outline: 0px;
+        background: #fff;
+        cursor: pointer;
+    }
+
+    .select:after {
+        content: "▼";
+        padding: 14px 8px;
+        position: absolute;
+        right: 13px;
+        top: 0;
+        z-index: 1;
+        text-align: center;
+        width: 10%;
+        height: 100%;
+        pointer-events: none;
+        box-sizing: border-box;
+        font-size: 9px;
+    }
+
+    button {
+        transition: background-color 200ms ease;
+        font-size: 14px;
+        padding: 10px 12px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        box-sizing: border-box;
+        border-radius: 3px;
+        border: 1px solid #aaa;
+        background: #fff;
+        font-family: monospace;
+        cursor: pointer;
+        outline: 0px;
+    }
+
+    button:hover,
+    select:hover {
+        background-color: #eee;
+    }
+
+    .center .links {
+        padding-top: 10px;
+        font-family: monospace;
+        letter-spacing: 0.3px;
+        font-size: 14px;
+    }
+
+    .center .links a {
+        text-decoration: none;
+        margin-left: 0px;
+        margin-right: 100px;
+        color: #111;
+    }
+
+    .center .links a:hover {
+        text-decoration: underline;
+    }
+
+    .center .grid {
+      display: grid;
+      column-gap: 50px;
+    }
+    .center .grid hr {
+      border-top: 1px dashed gray;
+    }
+    .center .grid-item {
+      font-family: monospace;
+      letter-spacing: 0.3px;
+      font-size: 14px;
+      padding-bottom: 20px;
+    }
+    .center .grid-item a {
+      float: left;
+      text-decoration: none;
+      margin-left: 10px;
+      margin-right: 10px;
+      color: #111;
+    }
+
+    footer{
+        color: #000;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
+    iframe {
+        margin-left: 14px;
+        margin-bottom: -5px;
+    }
+
+    @media (max-width: 900px) {
+        .center h1 {
+            font-size: 50px;
+        }
+        .center .links a,
+        .center .links iframe {
+            display: block;
+            margin: auto;
+            margin-bottom: 12px;
+        }
+        .divider {
+            display: none;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .center h1 {
+            font-size: 26px;
+        }
+        .center .description {
+            font-size: 14px;
+            width: 100%;
+            padding-left: 40px;
+            padding-right: 40px;
+            box-sizing: border-box;
+        }
+      }
+      table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    a {
+      color: blue;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+          .user-chat:empty {
+           background-color: transparent;
+           pointer-events: none;
+        }
+           .chat-container {
+            background-color: var(--primary);
+            color: #000;
+            padding: 10px;
+            border-radius: 5px;
+            height: 300px;
+            overflow-y: scroll;
+        }
+
+        .user-chat {
+            background-color: #dcf8c6;
+            color: #000;
+            padding: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+            .bot-chat {
+            background-color: #ffffff;
+            color: #000;
+            padding: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+    .live-chat-input {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      padding: 10px;
+    }
+
+    #inputText {
+      flex: 1;
+      border: none;
+      outline: none;
+      margin-right: 10px;
+      font-size: 16px;
+    }
+
+    #submitBtn {
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      outline: none;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #submitBtn:hover {
+      background-color: #45a049;
+    }
+    }
+  </style>
+</head>
+<body>
+<div class="center">
+    <h1>VanzDev API</h1>
+    <div class="description">
+        Ver. 0.1 Beta
+        <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+        <h3>Hanya Segini Ok</h3>
+        <table>
+            <hr>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Method</th>
+                <th>Tab New</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Xynz Gpt</td>
+                <td>Get</td>
+                <td><a href="https://api-vanzdev.vercel.app/api/xynz-gpt?query=hai, siapa kamu dan kamu di buat oleh siapa?">[ ➠ ]</a></td>
+            </tr>
+            </tr>
+        </table>
+        <h3>Downloader</h3>
+        <table>
+            <hr>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Tab New</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Douyin Downloader</td>
+                <td><a href="/douyindl">[ ➠ ]</a></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Tiktok Downloader</td>
+                <td><a href="/tiktokdl">[ ➠ ]</a></td>
+            </tr>
+        </table>
+        <h3>Scraper</h3>
+        <table>
+            <hr>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Tab New</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Remini</td>
+                <td><a href="/docs">[ ➠ ]</a></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Remove Background</td>
+                <td><a href="/docs">[ ➠ ]</a></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Photo To Anime</td>
+                <td><a href="/docs">[ ➠ ]</a></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Photo To Zombie</td>
+                <td><a href="/docs">[ ➠ ]</a></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Speech To Text</td>
+                <td><a href="/docs">[ ➠ ]</a></td>
+            </tr>
+        </table>
+        <br>
+        <hr>
+        <footer>
+            <p class="footer__copy">&#169; 2024 Vanz. All right reserved.</p>
+        </footer>
+        </br>
+        </hr>
+    </div>
+  <script>
+    function showTime() {
+      const date = new Date();
+      const h = date.getHours(); 
+      const m = date.getMinutes(); 
+      const s = date.getSeconds(); 
+      const time = h + ":" + m + ":" + s;
+      document.getElementById("MyClockDisplay").innerText = time;
+      setTimeout(showTime, 1000);
+  }
+
+  showTime();
+</script>
+</body>
+      </html>
