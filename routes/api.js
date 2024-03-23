@@ -101,6 +101,7 @@ loghandler = {
 	     let teksu = query.replace(/loli/gi, "anak gadis kecil");
 	     let bingApi = new BingApi(apikeybing);
              let imagesUrls = await bingApi.createImages(teksu + ". Anime Style ultra, HD Anime Style, 4K Anime Style, Anime Style, High quality, Ultra grapics, HD Cinematic, anime, 4K resolution, HD quality, Ultra CGI, High quality, Ultra grapics, HD Cinematic", false);
+	     await sleep(5000)
 	     try {
 	     res.json({
 			  status: true,
