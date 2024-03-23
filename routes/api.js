@@ -65,9 +65,9 @@ loghandler = {
 	       }
       })
      router.get('/xynz-gpt', async(req, res) => {
-	     let url = req.query.url
-	     if (!url) return res.json(loghandler.noturl)
-	     let result = await gpt(url)
+	     let query = req.query.query
+	     if (!query) return res.json(loghandler.notquery)
+	     let result = await gpt(query)
 	     try {
 	     res.json({
 			  status: true,
