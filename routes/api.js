@@ -50,15 +50,15 @@ loghandler = {
 		    res.json(loghandler.error)
 	     }
     })
-    router.get('/kobo', async(req, res) => {
-	     let url = req.query.url
-	     if (!url) return res.json(loghandler.noturl)
-	     let result = await kobo(url)
+    router.get('/igstalk', async(req, res) => {
+	     let query = req.query.query 
+	     if (!query) return res.json(loghandler.notquery)
+	     let result = await igstalk(query)
 	     try {
 	     res.json({
 			  status: true,
 			  creator: `${creator}`,
-              data: result,
+              result: result,
           })
 	    } catch(err) {
 		      console.log(err)
