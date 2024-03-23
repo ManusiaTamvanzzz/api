@@ -8,7 +8,7 @@ let fetch = require('node-fetch');
 let router  = express.Router();
 let nhentai = require('nhentai-js');
 let { tiktok, fbdl, npmstalk, pinterest, doujindesu, pinterestdl, gpt} = require('../lib/index') 
-//let { igstalk } = require('../lib/scraper/igstalk');
+let { BingApi, apikeybing } = require('../lib/scraper/bing-image');
 let options = require(__path + '/lib/options.js');
 let { color, bgcolor } = require(__path + '/lib/color.js');
 let { getBuffer, fetchJson } = require(__path + '/lib/fetcher.js');
@@ -89,6 +89,23 @@ loghandler = {
 			  status: true,
 			  creator: `${creator}`,
               data: result,
+          })
+	    } catch(err) {
+		      console.log(err)
+		      res.json(loghandler.error)
+	       }
+      })
+      router.get('/bing-img', async(req, res) => {
+	     let query = req.query.query
+	     if (!query) return res.json(loghandler.notquery)
+	     let teksu = query.replace(/loli/gi, "anak gadis kecil");
+	     let bingApi = new BingApi(apikeybing);
+             let imagesUrls = await bingApi.createImages(teksu + ". Anime Style ultra, HD Anime Style, 4K Anime Style, Anime Style, High quality, Ultra grapics, HD Cinematic, anime, 4K resolution, HD quality, Ultra CGI, High quality, Ultra grapics, HD Cinematic", false);
+	     try {
+	     res.json({
+			  status: true,
+			  creator: `${creator}`,
+              result: imagesUrls,
           })
 	    } catch(err) {
 		      console.log(err)
