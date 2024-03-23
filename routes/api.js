@@ -7,7 +7,7 @@ let fs = require('fs')
 let fetch = require('node-fetch');
 let router  = express.Router();
 let nhentai = require('nhentai-js');
-let { tiktok, fbdl,  pinterest, doujindesu, pinterestdl, gpt} = require('../lib/index') 
+let { tiktok, fbdl, npmstalk, pinterest, doujindesu, pinterestdl, gpt} = require('../lib/index') 
 //let { igstalk } = require('../lib/scraper/igstalk');
 let options = require(__path + '/lib/options.js');
 let { color, bgcolor } = require(__path + '/lib/color.js');
@@ -69,6 +69,21 @@ loghandler = {
 	     let query = req.query.query
 	     if (!query) return res.json(loghandler.notquery)
 	     let result = await gpt(query)
+	     try {
+	     res.json({
+			  status: true,
+			  creator: `${creator}`,
+              data: result,
+          })
+	    } catch(err) {
+		      console.log(err)
+		      res.json(loghandler.error)
+	       }
+      })
+     router.get('/npmstalk', async(req, res) => {
+	     let query = req.query.query
+	     if (!query) return res.json(loghandler.notquery)
+	     let result = await npmstalk(query)
 	     try {
 	     res.json({
 			  status: true,
