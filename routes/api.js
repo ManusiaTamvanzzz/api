@@ -9,6 +9,14 @@ let router  = express.Router();
 let nhentai = require('nhentai-js');
 let { tiktok, styletext, fbdl, npmstalk, pinterest, doujindesu, pinterestdl, gpt, ssweb} = require('../lib/index') 
 let { BingApi, apikeybing } = require('../lib/scraper/bing-image');
+let {
+  animedif,
+  animedif2,
+  animedif3,
+  stabledif,
+  stabledif2,
+  text2img
+} = require('../lib/scraper/ai2')
 let options = require(__path + '/lib/options.js');
 let { color, bgcolor } = require(__path + '/lib/color.js');
 let { getBuffer, fetchJson } = require(__path + '/lib/fetcher.js');
