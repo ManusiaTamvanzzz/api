@@ -7,7 +7,7 @@ let fs = require('fs')
 let fetch = require('node-fetch');
 let router  = express.Router();
 let nhentai = require('nhentai-js');
-let { tiktok, styletext, fbdl, npmstalk, pinterest, doujindesu, pinterestdl, gpt} = require('../lib/index') 
+let { tiktok, styletext, fbdl, npmstalk, pinterest, doujindesu, pinterestdl, gpt, ssweb} = require('../lib/index') 
 let { BingApi, apikeybing } = require('../lib/scraper/bing-image');
 let options = require(__path + '/lib/options.js');
 let { color, bgcolor } = require(__path + '/lib/color.js');
@@ -104,6 +104,20 @@ loghandler = {
 			  status: true,
 			  creator: `${creator}`,
               data: result,
+          })
+	    } catch(err) {
+		      console.log(err)
+		      res.json(loghandler.error)
+	       }
+      })
+      router.get('/ssweb', async(req, res) => {
+	     let url = req.query.url
+	     if (!url) return res.json(loghandler.noturl)
+	     let result = await ssweb(url)
+	     try {
+	     let buffer = await fetch(result.data)
+                  res.type('png')
+                  res.send(await buffer.buffer())
           })
 	    } catch(err) {
 		      console.log(err)
