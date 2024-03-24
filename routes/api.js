@@ -110,7 +110,7 @@ loghandler = {
 		      res.json(loghandler.error)
 	       }
       })
-      router.get('/ssweb', async(req, res) => {
+      router.get('/sswe', async(req, res) => {
 	     let url = req.query.url
 	     if (!url) return res.json(loghandler.noturl)
 	     let result = await ssweb(url)
@@ -211,11 +211,11 @@ loghandler = {
       })
          // Random Image
           router.get('/randomimage/waifu', async (req, res, next) => {
-              fetch(encodeURI(`https://waifu.pics/api/sfw/waifu`))
-             .then(response => response.json())
-             .then(async data => {
-                  let result = data;
-                  let buffer = await fetch(data.url)
+              ssweb("https://github.com", 'desktop')
+             .then(response => response.data)
+             .then(async dataa => {
+                  let result = dataa;
+                  let buffer = await fetch(dataa.url)
                   res.type('png')
                   res.send(await buffer.buffer())
               })
