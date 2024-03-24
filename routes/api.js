@@ -58,12 +58,12 @@ loghandler = {
 		    res.json(loghandler.error)
 	     }
     })
-    router.get('/text2image', async (req, res, next) => {
-	var text = req.query.text
-	if (!text) return res.json({ status : false, creator : `${creator}`, message : "[!] masukan parameter text"})   
-	text2img(text).then((data) =>{ 
+    router.get('/screenshot-web', async (req, res, next) => {
+	var url = req.query.url
+	if (!url) return res.json(loghandler.noturl)   
+	ssweb(url, 'desktop').then((data) =>{ 
 	res.set({'Content-Type': 'image/png'})
-	res.send(data)
+	res.send(data.data)
 	})
         .catch((err) =>{
          res.json(loghandler.error)
@@ -163,7 +163,7 @@ loghandler = {
 		      res.json(loghandler.error)
 	       }
       })
-      router.get('/ssweb', async(req, res) => {
+     /* router.get('/ssweb', async(req, res) => {
 	     let url = req.query.url
 	     if (!url) return res.json(loghandler.noturl)
 	     let result = await ssweb(url, 'desktop')
@@ -175,7 +175,7 @@ loghandler = {
 		      console.log(err)
 		      res.json(loghandler.error)
 	       }
-      })
+      })*/
       router.get('/bing-img', async(req, res) => {
 	     let query = req.query.query
 	     if (!query) return res.json(loghandler.notquery)
