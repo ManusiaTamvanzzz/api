@@ -80,6 +80,23 @@ loghandler = {
 		      res.json(loghandler.error)
 	       }
       })
+      router.get('/blackbox', async(req, res) => {
+	     let query = req.query.query
+	     if (!query) return res.json(loghandler.notquery)
+	     let resultt = await fetch(`https://aemt.me/blackbox?text=${query}`)
+	     let res = await resultt.json()
+	     let result = res.result
+	     try {
+	     res.json({
+			  status: true,
+			  creator: `${creator}`,
+              data: result,
+          })
+	    } catch(err) {
+		      console.log(err)
+		      res.json(loghandler.error)
+	       }
+      })
       router.get('/styletext', async(req, res) => {
 	     let query = req.query.query
 	     if (!query) return res.json(loghandler.notquery)
