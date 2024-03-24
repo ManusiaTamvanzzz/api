@@ -110,15 +110,14 @@ loghandler = {
 		      res.json(loghandler.error)
 	       }
       })
-      router.get('/sswe', async(req, res) => {
+      router.get('/ssweb', async(req, res) => {
 	     let url = req.query.url
 	     if (!url) return res.json(loghandler.noturl)
-	     let result = await ssweb(url)
+	     let result = await ssweb(url, 'desktop')
 	     try {
 	     let buffer = await fetch(result.data)
                   res.type('png')
                   res.send(await buffer.buffer())
-          })
 	    } catch(err) {
 		      console.log(err)
 		      res.json(loghandler.error)
