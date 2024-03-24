@@ -63,8 +63,8 @@ loghandler = {
 	if (!url) return res.json(loghandler.noturl)   
 	ssweb(url, 'desktop').then((data) =>{ 
 	res.set({'Content-Type': 'image/png'})
-        let buffer = await fetch(data.result)
-	res.send(await buffer.buffer())
+        let buffer = await getBuffer(data.result)
+	res.send(buffer)
 	})
         .catch((err) =>{
          res.json(loghandler.error)
