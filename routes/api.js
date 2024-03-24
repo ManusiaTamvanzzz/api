@@ -84,8 +84,8 @@ loghandler = {
 	     let query = req.query.query
 	     if (!query) return res.json(loghandler.notquery)
 	     let resultt = await fetch(`https://aemt.me/blackbox?text=${query}`)
-	     let res = await resultt.json()
-	     let result = res.result
+	     let ress = await resultt.json()
+	     let result = ress.result
 	     try {
 	     res.json({
 			  status: true,
