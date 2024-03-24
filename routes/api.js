@@ -58,6 +58,17 @@ loghandler = {
 		    res.json(loghandler.error)
 	     }
     })
+    router.get('/text2image', async (req, res, next) => {
+	var text = req.query.text
+	if (!text) return res.json({ status : false, creator : `${creator}`, message : "[!] masukan parameter text"})   
+	text2img(text).then((data) =>{ 
+	res.set({'Content-Type': 'image/png'})
+	res.send(data)
+	})
+        .catch((err) =>{
+         res.json(loghandler.error)
+      })
+    })
     router.get('/fbdl', async(req, res) => {
 	     let url = req.query.url
 	     if (!url) return res.json(loghandler.noturl)
