@@ -14,6 +14,14 @@ router.get('/', (req, res) => {
 router.get('/about', (req, res) => {
     res.sendFile(__path + '/views/about.html')
 })
+router.get('/dashboard/thanks-to', async(req, res) => {
+        let lah  
+        lah.thanksto = ['Vanz', 'Penyedia Sc Rest APIs']
+	    res.json({
+			  status: true,
+			  creator: "Vanzzz",
+              data: lah,
+          })
+      })
 
-
-module.exports = router
+module.exports = router 
