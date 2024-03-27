@@ -7,7 +7,7 @@ let fs = require('fs')
 let fetch = require('node-fetch');
 let router  = express.Router();
 let nhentai = require('nhentai-js');
-let { tiktok, styletext, fbdl, npmstalk, pinterest, doujindesu, pinterestdl, gpt, ssweb} = require('../lib/index') 
+let { tiktok,tiktokStalk, styletext, fbdl, npmstalk, pinterest, doujindesu, pinterestdl, gpt, ssweb} = require('../lib/index') 
 let { BingApi, apikeybing } = require('../lib/scraper/bing-image');
 let {
   animedif,
@@ -153,6 +153,21 @@ loghandler = {
 	     let query = req.query.query
 	     if (!query) return res.json(loghandler.notquery)
 	     let result = await npmstalk(query)
+	     try {
+	     res.json({
+			  status: true,
+			  creator: `${creator}`,
+              data: result,
+          })
+	    } catch(err) {
+		      console.log(err)
+		      res.json(loghandler.error)
+	       }
+      })
+      router.get('/tiktokstalk', async(req, res) => {
+	     let query = req.query.query
+	     if (!query) return res.json(loghandler.notquery)
+	     let result = await tiktokStalk(query)
 	     try {
 	     res.json({
 			  status: true,
