@@ -36,6 +36,11 @@ loghandler = {
         creator: `${creator}`,
         message: 'Masukkan Query'
     },
+    notfound: {
+        status: 404,
+        creator: `${creator}`,
+        message: {}
+    },
     error: {
         status: false,
         creator: `${creator}`,
@@ -99,6 +104,51 @@ loghandler = {
 		      console.log(err)
 		      res.json(loghandler.error)
 	       }
+      })
+      router.get('/api/tools/encode-binary', async (req, res, next) => {
+	var text = req.query.text
+	if (!text) return res.json({ status : false, creator : `${creator}`, message : "[!] masukan parameter text"})  
+	if (text.length > 2048) return res.json({ status : false, creator : `${creator}`, message : "[!] Maximal 2.048 String!"})
+
+	function encodeBinary(char) {
+		return char.split("").map(str => {
+			 const converted = str.charCodeAt(0).toString(2);
+			 return converted.padStart(8, "0");
+		}).join(" ")
+	 }
+	 res.json({
+		status: true,
+		creator: `${creator}`,
+		result: encodeBinary(text1)
+		})
+       })
+       router.get('/tools/decode-binary', async (req, res, next) => {
+	var text = req.query.text
+	if (!text) return res.json({ status : false, creator : `${creator}`, message : "[!] masukan parameter text"})  
+	if (text.length > 2048) return res.json({ status : false, creator : `${creator}`, message : "[!] Maximal 2.048 String!"})
+	function decodeBinary(char) {
+		return char.split(" ").map(str => String.fromCharCode(Number.parseInt(str, 2))).join("");
+	 }
+
+	res.json({
+		status: true,
+		creator: `${creator}`,
+		result: decodeBinary(text1)
+		})
+
+      })
+      router.get('/tools/screenshot-web', async (req, res, next) => {
+	var url = req.query.url
+	if (!url) return res.json(loghandler.noturl)    
+	ssweb(url).then((data) =>{ 
+		if (!data) return res.json(loghandler.notfound)
+		res.set({'Content-Type': 'image/png'})
+		res.send(data)
+	}).catch((err) =>{
+	 res.json({ status : false, creator : `${creator}`, message : "[!] masukan parameter url sahaja"})
+	
+	 })
+
       })
       router.get('/igstalk', async(req, res) => {
 	     let query = req.query.query
