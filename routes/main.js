@@ -13,6 +13,9 @@ router.get('/dashboard/hengker-bjorka', (req, res) => {
 router.get('/', (req, res) => {
     res.sendFile(__path + '/views/utama.html')
 })
+router.get('/chatgpt', (req, res) => {
+    res.sendFile(__path + '/views/gpt.html')
+})
 
 router.get('/about', (req, res) => {
     res.sendFile(__path + '/views/about.html')
