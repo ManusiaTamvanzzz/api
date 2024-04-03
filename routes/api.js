@@ -248,12 +248,14 @@ loghandler = {
 	     let teksu = query.replace(/loli/gi, "anak gadis kecil");
 	     let bingApi = new BingApi(apikeybing);
              let imagesUrls = await bingApi.createImages(teksu + ". Anime Style ultra, HD Anime Style, 4K Anime Style, Anime Style, High quality, Ultra grapics, HD Cinematic, anime, 4K resolution, HD quality, Ultra CGI, High quality, Ultra grapics, HD Cinematic", false);
-	     await sleep(8000)
+	     let results = []
+	     results.push(imagesUrls)
+	     // await sleep(8000)
 	     try {
 	     res.json({
 			  status: true,
 			  creator: `${creator}`,
-              result: imagesUrls,
+              result: results,
           })
 	    } catch(err) {
 		      console.log(err)
@@ -290,12 +292,13 @@ loghandler = {
       router.get('/pinimg', async(req, res) => {
 	      let query = req.query.query
 	      if (!query) return res.json(loghandler.notquery)
-	      let result = await pinterest(query)
-	      res.json({ 
-		      status: true,
-			  creator: `${creator}`,
-              data: result[Math.floor(Math.random() * result.length)],
-           })
+	      pinterest(url).then((data) =>{ 
+		//if (!data) return res.json(loghandler.notfound)
+		res.set({'Content-Type': 'image/png'})
+		res.send(data[Math.floor(Math.random() * data.length)])
+	}).catch((err) =>{
+	 res.json(loghandler.error)
+	
       })
       router.get('/google', async (req, res, next) => {
 	      let query = req.query.query
