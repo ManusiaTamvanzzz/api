@@ -308,7 +308,7 @@ const getChatResponse = async _0x524118 => {
      // try {
       //_0x2f8cce = 'https://api-vanzdev.vercel.app/api/xynz-gpt?query=' + userText;
      // } catch (e) {
-  let _0x2f8cce = 'https://aemt.me/openai?text=' + userText;
+  let _0x2f8cce = 'https://aemt.me/gpt4?text=' + userText;
       //}
   const _0x105bc5 = document.createElement('p');
   try {
@@ -317,7 +317,7 @@ const getChatResponse = async _0x524118 => {
       throw new Error('Error from AI model API');
     }
     const _0x4dc7f3 = await _0x361899.json();
-    const _0x17db4a = _0x4dc7f3.data;
+    const _0x17db4a = _0x4dc7f3.result;
     _0x105bc5.textContent = _0x17db4a;
   } catch (_0x53ee3f) {
     _0x105bc5.classList.add('error');
