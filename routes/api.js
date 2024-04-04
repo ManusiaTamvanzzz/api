@@ -141,7 +141,7 @@ loghandler = {
         var type = req.query.type
 	var url = req.query.url
 	if (!url) return res.json(loghandler.noturl)    
-	if (!type) return res.json({ status : false, creator : `${creator}`, message : ["Ada 3 Opsi", "desktop", "phone", "pc"})    
+	if (!type) return res.json({ status : false, creator : `${creator}`, message : ["Ada 3 Opsi", "desktop", "phone", "pc"]})    
 	ssweb(url, type).then((data) =>{ 
 		if (!data) return res.json(loghandler.notfound)
 		res.set({'Content-Type': 'image/png'})
