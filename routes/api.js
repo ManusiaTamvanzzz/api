@@ -119,7 +119,7 @@ loghandler = {
 	 res.json({
 		status: true,
 		creator: `${creator}`,
-		result: encodeBinary(text1)
+		result: encodeBinary(text)
 		})
        })
        router.get('/tools/decode-binary', async (req, res, next) => {
@@ -133,14 +133,16 @@ loghandler = {
 	res.json({
 		status: true,
 		creator: `${creator}`,
-		result: decodeBinary(text1)
+		result: decodeBinary(text)
 		})
 
       })
       router.get('/tools/screenshot-web', async (req, res, next) => {
+        var type = req.query.type
 	var url = req.query.url
 	if (!url) return res.json(loghandler.noturl)    
-	ssweb(url).then((data) =>{ 
+	if (!type) return res.json({ status : false, creator : `${creator}`, message : ["Ada 3 Opsi", "desktop", "phone", "pc"})    
+	ssweb(url, type).then((data) =>{ 
 		if (!data) return res.json(loghandler.notfound)
 		res.set({'Content-Type': 'image/png'})
 		res.send(data)
@@ -294,7 +296,7 @@ loghandler = {
 	      if (!query) return res.json(loghandler.notquery)
 	      pinterest(url).then((data) =>{ 
 		//if (!data) return res.json(loghandler.notfound)
-		res.set({'Content-Type': 'image/png'})
+		res.set({'Content-Type': 'image/jpeg'})
 		res.send(data[Math.floor(Math.random() * data.length)])
 	}).catch((err) =>{
 	 res.json(loghandler.error)
